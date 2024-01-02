@@ -19,13 +19,23 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="DebugState.cpp" />
+    <ClCompile Include="EngineState.cpp" />
+    <ClCompile Include="IEngineState.cpp" />
+    <ClCompile Include="MenuState.cpp" />
     <ClCompile Include="Message.cpp" />
     <ClCompile Include="MessageHandler.cpp" />
+    <ClCompile Include="StateMachine.cpp" />
     <ClCompile Include="WinMain.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="DebugState.h" />
+    <ClInclude Include="EngineState.h" />
+    <ClInclude Include="IEngineState.h" />
+    <ClInclude Include="MenuState.h" />
     <ClInclude Include="MessageHandler.h" />
     <ClInclude Include="Message.h" />
+    <ClInclude Include="StateMachine.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
