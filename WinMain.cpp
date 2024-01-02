@@ -14,8 +14,6 @@
 #include <windows.h>
 #include <stdio.h>
 
-#define ONPC 1
-
 #if UseConsole
 #include <io.h>
 #include <fcntl.h>
