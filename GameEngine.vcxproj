@@ -31,6 +31,7 @@
   <ItemGroup>
     <ClInclude Include="DebugState.h" />
     <ClInclude Include="EngineState.h" />
+    <ClInclude Include="Helpers.h" />
     <ClInclude Include="IEngineState.h" />
     <ClInclude Include="MenuState.h" />
     <ClInclude Include="MessageHandler.h" />

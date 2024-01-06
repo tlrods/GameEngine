@@ -68,5 +68,8 @@
     <ClInclude Include="DebugState.h">
       <Filter>Source Files\State Machine</Filter>
     </ClInclude>
+    <ClInclude Include="Helpers.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
