@@ -6,11 +6,6 @@
 //Game Files
 #include "Application.h"
 
-// Windows Header Files:
-#include <windows.h>
-#include <stdio.h>
-#include "MessageHandler.h"
-
 #if UseConsole
 #include <io.h>
 #include <fcntl.h>
@@ -65,11 +60,9 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 		return FALSE;
 	}
 
-	OutputDebugString(L"Engine starting.");
+	OutputDebugString(L"test");
 
 	hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_GAMEENGINE));
-
-	MessageHandler* message_handler = new MessageHandler;
 
 	while (true)
 	{
