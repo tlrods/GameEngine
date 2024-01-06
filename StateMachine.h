@@ -11,7 +11,9 @@ public:
 	StateManager();
 	~StateManager();
 
-	bool InitializeStates();
+	bool Initialize();
+	bool Update();
+	bool Render();
 	bool TransitionState(IEngineState::StateType& eType);
 
 private:
@@ -19,4 +21,6 @@ private:
 	EngineState* m_pActiveState;
 	EngineState* m_pMenuState;
 	EngineState* m_pDebugState;
+
+	bool DEBUG_TESTEROO = false;
 };

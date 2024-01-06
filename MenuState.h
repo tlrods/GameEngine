@@ -18,6 +18,5 @@ public:
 
 private:
 
-	IEngineState* m_pPreviousState;
 	StateType m_eType;
 };

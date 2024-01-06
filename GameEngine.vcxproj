@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Application.cpp" />
     <ClCompile Include="DebugState.cpp" />
     <ClCompile Include="EngineState.cpp" />
     <ClCompile Include="IEngineState.cpp" />
@@ -30,6 +31,7 @@
     <ClCompile Include="WinMain.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Application.h" />
     <ClInclude Include="DebugState.h" />
     <ClInclude Include="EngineState.h" />
     <ClInclude Include="Helpers.h" />
