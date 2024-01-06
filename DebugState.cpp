@@ -24,12 +24,3 @@ IEngineState::StateType DebugState::GetType()
 {
 	return IEngineState::StateType::Debug;
 }
-
-IEngineState* DebugState::GetPrevious()
-{
-	return nullptr;
-}
-
-void DebugState::SetPrevious(IEngineState& pPrev)
-{
-}

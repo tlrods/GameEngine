@@ -6,8 +6,8 @@ class MenuState : public EngineState
 
 public:
 
-	MenuState(StateType eType) : EngineState(eType), m_eType(eType), m_pPreviousState(nullptr) {};
-	~MenuState() { delete m_pPreviousState; };
+	MenuState(StateType eType) : EngineState(eType), m_eType(eType) {};
+	~MenuState() {};
 
 	virtual bool Initialize() override;
 	virtual bool Update() override;
@@ -15,8 +15,6 @@ public:
 	virtual bool Shutdown() override;
 
 	virtual StateType GetType() override;
-	virtual IEngineState* GetPrevious() override;
-	virtual void SetPrevious(IEngineState& pPrev) override;
 
 private:
 

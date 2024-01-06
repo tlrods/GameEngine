@@ -16,8 +16,6 @@ public:
 	virtual bool Shutdown() = 0;
 
 	virtual StateType GetType() = 0;
-	virtual IEngineState* GetPrevious() = 0;
-	virtual void SetPrevious(IEngineState& pPrev) = 0;
 
 private:
 

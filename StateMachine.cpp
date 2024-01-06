@@ -20,8 +20,6 @@ bool StateManager::InitializeStates()
 	m_pMenuState = new MenuState(IEngineState::StateType::Menu);
 	m_pDebugState = new DebugState(IEngineState::StateType::Debug);
 
-	m_pDebugState->SetPrevious(*m_pMenuState);
-
 	if (m_pMenuState && m_pDebugState)
 	{
 		return true;
