@@ -45,6 +45,9 @@
     <ClCompile Include="DebugState.cpp">
       <Filter>Source Files\State Machine</Filter>
     </ClCompile>
+    <ClCompile Include="MessageListener.cpp">
+      <Filter>Source Files\MessageSystem</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Message.h">
@@ -67,6 +70,9 @@
     </ClInclude>
     <ClInclude Include="DebugState.h">
       <Filter>Source Files\State Machine</Filter>
+    </ClInclude>
+    <ClInclude Include="MessageListener.h">
+      <Filter>Source Files\MessageSystem</Filter>
     </ClInclude>
     <ClInclude Include="Helpers.h">
       <Filter>Source Files</Filter>
