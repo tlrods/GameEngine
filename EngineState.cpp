@@ -25,14 +25,3 @@ IEngineState::StateType EngineState::GetType()
 {
 	return m_eType;
 }
-
-IEngineState* EngineState::GetPrevious()
-{
-	return m_pPreviousState;
-}
-
-void EngineState::SetPrevious(IEngineState& pPrev)
-{
-	//TODO: Crashes when previous state is null
-	*m_pPreviousState = pPrev;
-}

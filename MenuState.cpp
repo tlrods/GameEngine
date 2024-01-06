@@ -25,12 +25,3 @@ IEngineState::StateType MenuState::GetType()
 {
 	return IEngineState::StateType::Menu;
 }
-
-IEngineState* MenuState::GetPrevious()
-{
-	return nullptr;
-}
-
-void MenuState::SetPrevious(IEngineState& pPrev)
-{
-}

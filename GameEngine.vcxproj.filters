@@ -48,6 +48,9 @@
     <ClCompile Include="MessageListener.cpp">
       <Filter>Source Files\MessageSystem</Filter>
     </ClCompile>
+    <ClCompile Include="Application.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Message.h">
@@ -74,8 +77,11 @@
     <ClInclude Include="MessageListener.h">
       <Filter>Source Files\MessageSystem</Filter>
     </ClInclude>
+    <ClInclude Include="Application.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="Helpers.h">
-      <Filter>Source Files</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

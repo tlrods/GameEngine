@@ -7,8 +7,8 @@ class EngineState : public IEngineState
 public:
 	
 	EngineState() = delete;
-	EngineState(IEngineState::StateType& eType) : m_eType(eType), m_pPreviousState(nullptr) {};
-	~EngineState() { delete m_pPreviousState; };
+	EngineState(IEngineState::StateType& eType) : m_eType(eType) {};
+	~EngineState() {};
 
 	virtual bool Initialize() override;
 	virtual bool Update() = 0;
@@ -16,11 +16,8 @@ public:
 	virtual bool Shutdown() override;
 
 	virtual IEngineState::StateType GetType() override;
-	virtual IEngineState* GetPrevious() override;
-	virtual void SetPrevious(IEngineState& pPrev) override;
 
 private:
 
-	IEngineState* m_pPreviousState;
 	IEngineState::StateType m_eType;
 };

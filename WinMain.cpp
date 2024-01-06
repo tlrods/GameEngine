@@ -1,14 +1,10 @@
 // WinMain.cpp : Defines the entry point for the application.
 //
 
-#define WIN32_LEAN_AND_MEAN             // Exclude rarely-used stuff from Windows headers
-#define IDS_APP_TITLE  103
-#define IDI_GAMEENGINE 107
-#define IDI_SMALL      108
-#define IDC_GAMEENGINE 109
+#include "Helpers.h"
 
-#define SCREEN_WIDTH   1000
-#define SCREEN_HEIGHT  1000
+//Game Files
+#include "Application.h"
 
 // Windows Header Files:
 #include <windows.h>
@@ -29,6 +25,7 @@ FILTERKEYS g_StartupFilterKeys = { sizeof(FILTERKEYS), 0 };
 //#define WORLDSCREENWIDTH 1600
 //#define WORLDSCREENHEIGHT 900
 
+Application GameInstance;
 HWND GlobalHWnd;
 
 // Global Variables:
@@ -76,27 +73,25 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
 	while (true)
 	{
-		message_handler->SendMessages();
+		if (PeekMessageW(&msg, NULL, 0, 0, PM_REMOVE) == TRUE)
+		{
+			if (msg.message == WM_QUIT)
+			{
+				GameInstance.Shutdown();
+				//MessageManager::GetInstance()->DeleteInstance();
+				//Input::GetInstance()->DestroyInstance();
+				break;
+			}
 
-		//if (PeekMessageW(&msg, NULL, 0, 0, PM_REMOVE) == TRUE)
-		//{
-		//	if (msg.message == WM_QUIT)
-		//	{
-		//		Game.Shutdown();
-		//		MessageManager::GetInstance()->DeleteInstance();
-		//		//Input::GetInstance()->DestroyInstance();
-		//		break;
-		//	}
-
-		//	DispatchMessageW(&msg);
-		//}
-		//else
-		//{
-		//	Game.Update();
-		//	Game.Render();
-		//	//			MessageManager::GetInstance()->Update();
-		//	InputManager.Update();
-		//}
+			DispatchMessageW(&msg);
+		}
+		else
+		{
+			GameInstance.Update();
+			GameInstance.Render();
+			//			MessageManager::GetInstance()->Update();
+			//InputManager.Update();
+		}
 	}
 
 	return (int)msg.wParam;
@@ -207,6 +202,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 		NULL													// creation parameters
 	);
 
+	GameInstance.Intitialize(hWnd, hInst, 500, 500);
 	if (!hWnd)
 	{
 		DWORD error = GetLastError();
