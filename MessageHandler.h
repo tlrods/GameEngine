@@ -1,7 +1,9 @@
 #pragma once
 
 #include "Message.h"
-#include <vector>
+#include <set>
+#include <map>
+#include <queue>
 
 class MessageListener;
 
@@ -16,10 +18,12 @@ public:
 
 	bool Register(MessageListener*, MessageType);
 	bool Unregister(MessageListener*, MessageType);
+	bool QueueMessage(Message);
+	bool SendMessages();
 
 private:
 	static MessageHandler* s_Instance;
 
-	std::vector<Message> m_messageQueue;
-	std::vector<MessageListener*> m_listeners;
+	std::queue<Message> m_messageQueue;
+	std::map<MessageType, std::set<MessageListener*>> m_subscriptions;
 };

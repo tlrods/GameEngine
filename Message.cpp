@@ -8,7 +8,7 @@ Message::Message(MessageType type, void* data)
 
 Message::Message()
 {
-	m_eType = MessageType::MSG_NONE;
+	m_eType = MessageType::None;
 	m_pData = nullptr;
 }
 

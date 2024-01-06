@@ -13,6 +13,7 @@
 // Windows Header Files:
 #include <windows.h>
 #include <stdio.h>
+#include "MessageHandler.h"
 
 #if UseConsole
 #include <io.h>
@@ -67,12 +68,16 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 		return FALSE;
 	}
 
-	OutputDebugString(L"test");
+	OutputDebugString(L"Engine starting.");
 
 	hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_GAMEENGINE));
 
+	MessageHandler* message_handler = new MessageHandler;
+
 	while (true)
 	{
+		message_handler->SendMessages();
+
 		//if (PeekMessageW(&msg, NULL, 0, 0, PM_REMOVE) == TRUE)
 		//{
 		//	if (msg.message == WM_QUIT)

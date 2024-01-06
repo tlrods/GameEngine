@@ -2,9 +2,10 @@
 
 enum class MessageType
 {
-	MSG_NONE       = 0,
-	MSG_GAME_START = 1,
-	MSG_GAME_END   = 2
+	None         = 0,
+	GameStart    = 1,
+	GameEnd      = 2,
+	GameRunning  = 3
 };
 
 class Message
