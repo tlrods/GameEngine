@@ -1,5 +1,5 @@
 #include "MessageListener.h"
-#include "MessageHandler.h"
+#include "MessageManager.h"
 
 MessageListener::MessageListener() 
 {
@@ -10,7 +10,7 @@ MessageListener::~MessageListener() {}
 
 bool MessageListener::Register(MessageType msgType)
 {
-	if (!MessageHandler::GetInstance()->Register(this, msgType))
+	if (!MessageManager::GetInstance()->Register(this, msgType))
 	{
 		return false;
 	}
@@ -20,7 +20,7 @@ bool MessageListener::Register(MessageType msgType)
 
 bool MessageListener::Unregister(MessageType msgType)
 {
-	if (!MessageHandler::GetInstance()->Unregister(this, msgType))
+	if (!MessageManager::GetInstance()->Unregister(this, msgType))
 	{
 		return false;
 	}

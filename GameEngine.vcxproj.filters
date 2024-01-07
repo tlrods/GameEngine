@@ -27,7 +27,7 @@
     <ClCompile Include="Message.cpp">
       <Filter>Source Files\MessageSystem</Filter>
     </ClCompile>
-    <ClCompile Include="MessageHandler.cpp">
+    <ClCompile Include="MessageManager.cpp">
       <Filter>Source Files\MessageSystem</Filter>
     </ClCompile>
     <ClCompile Include="StateMachine.cpp">
@@ -56,7 +56,7 @@
     <ClInclude Include="Message.h">
       <Filter>Source Files\MessageSystem</Filter>
     </ClInclude>
-    <ClInclude Include="MessageHandler.h">
+    <ClInclude Include="MessageManager.h">
       <Filter>Source Files\MessageSystem</Filter>
     </ClInclude>
     <ClInclude Include="StateMachine.h">

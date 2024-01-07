@@ -26,7 +26,7 @@
     <ClCompile Include="MessageListener.cpp" />
     <ClCompile Include="MenuState.cpp" />
     <ClCompile Include="Message.cpp" />
-    <ClCompile Include="MessageHandler.cpp" />
+    <ClCompile Include="MessageManager.cpp" />
     <ClCompile Include="StateMachine.cpp" />
     <ClCompile Include="WinMain.cpp" />
   </ItemGroup>
@@ -37,7 +37,7 @@
     <ClInclude Include="Helpers.h" />
     <ClInclude Include="IEngineState.h" />
     <ClInclude Include="MenuState.h" />
-    <ClInclude Include="MessageHandler.h" />
+    <ClInclude Include="MessageManager.h" />
     <ClInclude Include="Message.h" />
     <ClInclude Include="MessageListener.h" />
     <ClInclude Include="StateMachine.h" />
