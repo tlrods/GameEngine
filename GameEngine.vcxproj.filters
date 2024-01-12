@@ -19,6 +19,18 @@
     <Filter Include="Source Files\State Machine">
       <UniqueIdentifier>{4b9ef85c-0439-4f6c-8edd-984a93f4d4c7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\DirectX Renderer">
+      <UniqueIdentifier>{4bb6b067-8949-44ec-aa4e-565e3280e04a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Rendering System">
+      <UniqueIdentifier>{6d397a91-b17e-4ed8-bac8-45d26d071fdb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets">
+      <UniqueIdentifier>{60f1cd9a-2aff-463e-8ee3-6d1e613a99a5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets\Shaders">
+      <UniqueIdentifier>{613c727f-7eb8-4014-8afa-c3510be0cc2e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinMain.cpp">
@@ -50,6 +62,21 @@
     </ClCompile>
     <ClCompile Include="Application.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderCore.cpp">
+      <Filter>Source Files\DirectX Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderContext.cpp">
+      <Filter>Source Files\DirectX Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer.cpp">
+      <Filter>Source Files\Rendering System</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderingSurface.cpp">
+      <Filter>Source Files\Rendering System</Filter>
+    </ClCompile>
+    <ClCompile Include="ApplicationWindow.cpp">
+      <Filter>Source Files\DirectX Renderer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -83,5 +110,28 @@
     <ClInclude Include="Helpers.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="RenderCore.h">
+      <Filter>Source Files\DirectX Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderContext.h">
+      <Filter>Source Files\DirectX Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer.h">
+      <Filter>Source Files\Rendering System</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderingSurface.h">
+      <Filter>Source Files\Rendering System</Filter>
+    </ClInclude>
+    <ClInclude Include="d3dx12.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ApplicationWindow.h">
+      <Filter>Source Files\DirectX Renderer</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="ps_vs_shader.hlsl">
+      <Filter>Assets\Shaders</Filter>
+    </FxCompile>
   </ItemGroup>
 </Project>
