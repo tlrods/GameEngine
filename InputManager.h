@@ -1,14 +1,11 @@
 #include "Input.h"
 #include "WindowsInput.h"
 #include <unordered_map>
-#include <functional>
 
 class InputManager
 {
 public:
 	static InputManager& getInstance();
-
-	void Initialize();
 
 	void KeyPressed(KeyCode);
 	void KeyReleased(KeyCode);

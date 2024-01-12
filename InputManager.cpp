@@ -3,12 +3,41 @@
 
 void OnKeyPress(InputData& data)
 {
-	KeyCode code = data.keyCode;
-	
+	InputManager::getInstance().KeyPressed(data.keyCode);
+}
+
+void OnKeyRelease(InputData& data)
+{
+	InputManager::getInstance().KeyReleased(data.keyCode);
+}
+
+InputManager& InputManager::getInstance()
+{
+	static InputManager instance;
+	return instance;
+}
+
+InputManager::InputManager()
+{
+	m_pInput = new Input;
+	m_pInput->RegisterCallback(InputEvent::KeyPressed, OnKeyPress);
+	m_pInput->RegisterCallback(InputEvent::KeyReleased, OnKeyRelease);
+
+	m_pWindowsInput = new WindowsInput(m_pInput);
+	m_pWindowsInput->Initialize();
+}
+
+InputManager::~InputManager()
+{
+
+}
+
+void InputManager::KeyPressed(KeyCode code)
+{
 	switch (code)
 	{
 	case KeyCode::Ichi:
-		
+
 		OutputDebugString(L"1 ");
 		break;
 	case KeyCode::Ni:
@@ -79,11 +108,9 @@ void OnKeyPress(InputData& data)
 	}
 }
 
-void OnKeyRelease(InputData& data)
+void InputManager::KeyReleased(KeyCode code)
 {
-	KeyCode code = data.keyCode;
-
-	switch (code)
+	/*switch (code)
 	{
 	case KeyCode::Ichi:
 		OutputDebugString(L"-1 ");
@@ -153,46 +180,5 @@ void OnKeyRelease(InputData& data)
 		break;
 	default:
 		break;
-	}
+	}*/
 }
-
-InputManager& InputManager::getInstance()
-{
-	static InputManager instance;
-	return instance;
-}
-
-InputManager::InputManager()
-{
-	m_pInput = new Input;
-	m_pInput->RegisterCallback(InputEvent::KeyPressed, OnKeyPress);
-	m_pInput->RegisterCallback(InputEvent::KeyReleased, OnKeyRelease);
-
-	m_pWindowsInput = new WindowsInput(m_pInput);
-	m_pWindowsInput->Initialize();
-}
-
-InputManager::~InputManager()
-{
-
-}
-
-void InputManager::Initialize()
-{
-
-}
-
-//void InputManager::Initialize()
-//{
-//	m_pInput = new Input;
-//	m_pInput->RegisterCallback(InputEvent::KeyPressed, OnKeyPress);
-//	m_pInput->RegisterCallback(InputEvent::KeyReleased, OnKeyRelease);
-//
-//	m_pWindowsInput = new WindowsInput(m_pInput);
-//	m_pWindowsInput->Initialize();
-//}
-//
-//void InputManager::Update()
-//{
-//	//m_pInput->HandleKeyPress(KeyCode::Ichi, KeyModifier::None);
-//}
