@@ -19,7 +19,7 @@ public:
 	bool Register(MessageListener*, MessageType);
 	bool Unregister(MessageListener*, MessageType);
 	bool QueueMessage(Message);
-	bool SendMessages();
+	bool Update();
 
 private:
 	static MessageManager* s_Instance;

@@ -2,6 +2,7 @@
 #include "Helpers.h" //TODO: There's a way to make all headers auto include this
 
 class StateManager;
+class MessageManager;
 
 class Application
 {
@@ -22,5 +23,5 @@ private:
 	HINSTANCE hInst;
 
 	StateManager* m_pStateManager;
-
+	MessageManager* m_pMessageManager;
 };

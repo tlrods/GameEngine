@@ -1,5 +1,7 @@
 #include "Application.h"
 #include "StateMachine.h"
+#include "MessageManager.h"
+#include "InputManager.h"
 
 void Application::Intitialize(HWND inHWnd, HINSTANCE inHInst, UINT screenWidth, UINT screenHeight)
 {
@@ -8,6 +10,10 @@ void Application::Intitialize(HWND inHWnd, HINSTANCE inHInst, UINT screenWidth, 
 
 	m_pStateManager = new StateManager;
 	m_pStateManager->Initialize();
+
+	m_pMessageManager = new MessageManager;
+
+	InputManager::getInstance();
 }
 
 void Application::Update()

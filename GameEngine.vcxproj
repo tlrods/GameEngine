@@ -23,11 +23,14 @@
     <ClCompile Include="DebugState.cpp" />
     <ClCompile Include="EngineState.cpp" />
     <ClCompile Include="IEngineState.cpp" />
+    <ClCompile Include="Input.cpp" />
+    <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="MessageListener.cpp" />
     <ClCompile Include="MenuState.cpp" />
     <ClCompile Include="Message.cpp" />
     <ClCompile Include="MessageManager.cpp" />
     <ClCompile Include="StateMachine.cpp" />
+    <ClCompile Include="WindowsInput.cpp" />
     <ClCompile Include="WinMain.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -36,11 +39,14 @@
     <ClInclude Include="EngineState.h" />
     <ClInclude Include="Helpers.h" />
     <ClInclude Include="IEngineState.h" />
+    <ClInclude Include="Input.h" />
+    <ClInclude Include="InputManager.h" />
     <ClInclude Include="MenuState.h" />
     <ClInclude Include="MessageManager.h" />
     <ClInclude Include="Message.h" />
     <ClInclude Include="MessageListener.h" />
     <ClInclude Include="StateMachine.h" />
+    <ClInclude Include="WindowsInput.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

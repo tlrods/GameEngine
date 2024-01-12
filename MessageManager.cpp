@@ -33,19 +33,6 @@ bool MessageManager::Register(MessageListener* listener, MessageType msgType)
 		m_subscriptions.insert(std::make_pair(msgType, listeners));
 	}
 
-	/*std::vector<MessageListener*> listeners = m_subscriptions.find(msgType)->second;
-
-	for (std::vector<MessageListener*>::iterator it = listeners.begin(); it != listeners.end(); ++it)
-	{
-		if ((*it) == listener)
-		{
-			OutputDebugString(L"Failed to register listener - already registered.");
-			return false;
-		}
-	}
-
-	listeners.push_back(listener);*/
-
 	m_subscriptions.find(msgType)->second.insert(listener);
 
 	return true;
@@ -65,7 +52,7 @@ bool MessageManager::QueueMessage(Message msg)
 	return true;
 }
 
-bool MessageManager::SendMessages()
+bool MessageManager::Update()
 {
 	while (!m_messageQueue.empty())
 	{

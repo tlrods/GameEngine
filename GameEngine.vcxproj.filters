@@ -19,6 +19,9 @@
     <Filter Include="Source Files\State Machine">
       <UniqueIdentifier>{4b9ef85c-0439-4f6c-8edd-984a93f4d4c7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\InputSystem">
+      <UniqueIdentifier>{00fea3c6-cf49-4777-9aac-f07f76448b8d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinMain.cpp">
@@ -51,6 +54,15 @@
     <ClCompile Include="Application.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Input.cpp">
+      <Filter>Source Files\InputSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="InputManager.cpp">
+      <Filter>Source Files\InputSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="WindowsInput.cpp">
+      <Filter>Source Files\InputSystem</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Message.h">
@@ -82,6 +94,15 @@
     </ClInclude>
     <ClInclude Include="Helpers.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Input.h">
+      <Filter>Source Files\InputSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="InputManager.h">
+      <Filter>Source Files\InputSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="WindowsInput.h">
+      <Filter>Source Files\InputSystem</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
