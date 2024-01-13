@@ -86,12 +86,8 @@ int ApplicationWindow::Run(HINSTANCE hInstance, int nCmdShow)
     ShowWindow(m_hWnd, nCmdShow);
     UpdateWindow(m_hWnd);
 
-    // TODO: Place code here.
     MSG msg;
     HACCEL hAccelTable;
-
-    // Initialize global strings
-    OutputDebugString(L"test");
 
     hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_GAMEENGINE));
 

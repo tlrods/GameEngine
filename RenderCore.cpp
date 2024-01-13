@@ -401,7 +401,7 @@ void RenderCore::WaitForPreviousFrame()
 
     m_frameIndex = m_swapChain->GetCurrentBackBufferIndex();
 }
-#include <algorithm>
+
 void RenderCore::InitAssetPath()
 {
     WCHAR assetsPath[512];
