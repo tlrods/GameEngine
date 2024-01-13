@@ -12,7 +12,7 @@ public:
 	~StateManager();
 
 	bool Initialize();
-	bool Update();
+	bool Update(unsigned long dt);
 	bool Render();
 	bool TransitionState(IEngineState::StateType& eType);
 

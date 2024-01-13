@@ -6,8 +6,8 @@
 #define IDI_SMALL      108
 #define IDC_GAMEENGINE 109
 
-#define SCREEN_WIDTH   1000
-#define SCREEN_HEIGHT  1000
+#define SCREEN_WIDTH   1920
+#define SCREEN_HEIGHT  1080
 
 // Windows Header Files:
 #include <windows.h>

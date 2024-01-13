@@ -34,7 +34,7 @@ bool StateManager::Initialize()
 	}
 }
 
-bool StateManager::Update()
+bool StateManager::Update(unsigned long dt)
 {
 	return true;
 }

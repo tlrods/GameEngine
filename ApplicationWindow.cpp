@@ -7,14 +7,12 @@ using namespace Microsoft::WRL;
 HWND ApplicationWindow::m_hWnd = nullptr;
 Application* ApplicationWindow::m_pGameInstance = nullptr;
 
-#define WORLDSCREENWIDTH 1600
-#define WORLDSCREENHEIGHT 900
 
 int ApplicationWindow::Run(HINSTANCE hInstance, int nCmdShow)
 {
     if (!m_pGameInstance)
     {
-        m_pGameInstance = new Application(WORLDSCREENWIDTH, WORLDSCREENHEIGHT, L"Game Engine");
+        m_pGameInstance = new Application(SCREEN_WIDTH, SCREEN_HEIGHT, L"Game Engine");
     }
     // Parse the command line parameters
     int argc;

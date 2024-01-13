@@ -27,6 +27,13 @@ private:
         DirectX::XMFLOAT4 color;
     };
 
+    struct SceneConstantBuffer
+    {
+        DirectX::XMFLOAT4 offset;
+        float padding[60]; // Padding so the constant buffer is 256-byte aligned.
+    };
+    static_assert((sizeof(SceneConstantBuffer) % 256) == 0, "Constant Buffer size must be 256-byte aligned");
+
     // Pipeline objects. TODO: Fix Scoping
     CD3DX12_VIEWPORT m_viewport;
     CD3DX12_RECT m_scissorRect;
@@ -37,6 +44,7 @@ private:
     Microsoft::WRL::ComPtr<ID3D12CommandQueue> m_commandQueue;
     Microsoft::WRL::ComPtr<ID3D12RootSignature> m_rootSignature;
     Microsoft::WRL::ComPtr<ID3D12DescriptorHeap> m_rtvHeap;
+    Microsoft::WRL::ComPtr<ID3D12DescriptorHeap> m_cbvHeap;
     Microsoft::WRL::ComPtr<ID3D12PipelineState> m_pipelineState;
     Microsoft::WRL::ComPtr<ID3D12GraphicsCommandList> m_commandList;
     UINT m_rtvDescriptorSize;
@@ -44,6 +52,9 @@ private:
     // App resources.
     Microsoft::WRL::ComPtr<ID3D12Resource> m_vertexBuffer;
     D3D12_VERTEX_BUFFER_VIEW m_vertexBufferView;
+    Microsoft::WRL::ComPtr<ID3D12Resource> m_constantBuffer;
+    SceneConstantBuffer m_constantBufferData;
+    UINT8* m_pCbvDataBegin;
 
     // Synchronization objects.
     UINT m_frameIndex;

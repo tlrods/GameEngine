@@ -34,11 +34,20 @@ void Application::Intitialize()
     m_pMessageManager = MessageManager::GetInstance();
 
     m_pInputManager = InputManager::GetInstance();
+
+    m_ulGameTime = GetTickCount();
 }
 
 void Application::Update()
 {
-    m_pStateManager->Update();
+    unsigned long now = GetTickCount();
+    float elapsedTime = (now - m_ulGameTime) / 1000.0f;
+    m_ulGameTime = now;
+    if (elapsedTime > 0.125f) elapsedTime = 0.125f;
+
+    
+
+    m_pStateManager->Update(elapsedTime);
     m_pRenderer->Update();
     m_pMessageManager->Update();
 }
