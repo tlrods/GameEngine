@@ -404,9 +404,12 @@ void RenderCore::WaitForPreviousFrame()
 #include <algorithm>
 void RenderCore::InitAssetPath()
 {
+    WCHAR assetsPath[512];
+    DWORD size = GetModuleFileName(nullptr, assetsPath, _countof(assetsPath));
+
     //janky string from macro in project file
 #pragma warning (disable : 4129 )
-    std::wstring szDirectoryBase(PROJECT_DIR);
+    std::wstring szDirectoryBase(assetsPath);
 
     //relative path to shader folder
     std::wstring szAssetLocation = L"\\Assets\\Shaders\\";
@@ -416,15 +419,16 @@ void RenderCore::InitAssetPath()
     while (iter != szDirectoryBase.end())
     {
         //fix drive path
-        if (*(iter) == ':')
+        if (*(iter) == 'x')
         {
-            iter++;
-            szDirectoryBase.insert(iter++, L'\\');
-        }
-        //prune parenthesis
-        else if (*(iter) == '(' || *(iter) == ')')
-        {
-            szDirectoryBase.erase(iter);
+            if (*(iter+1) == '6')
+            {
+                if (*(iter+2) == '4')
+                {
+                    szDirectoryBase.erase(iter, szDirectoryBase.end());
+                    break;
+                }
+            }
         }
         else
         {
