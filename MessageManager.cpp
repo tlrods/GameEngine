@@ -2,6 +2,9 @@
 #include "MessageListener.h"
 #include <windows.h>
 
+//test
+#include "Input.h"
+
 MessageManager* MessageManager::s_Instance = nullptr;
 
 MessageManager::MessageManager() 
@@ -45,7 +48,7 @@ bool MessageManager::Unregister(MessageListener* listener, MessageType msgType)
 	return true;
 }
 
-bool MessageManager::QueueMessage(Message msg)
+bool MessageManager::QueueMessage(Message* msg)
 {
 	m_messageQueue.push(msg);
 
@@ -54,15 +57,21 @@ bool MessageManager::QueueMessage(Message msg)
 
 bool MessageManager::Update()
 {
-	while (!m_messageQueue.empty())
+	while (!m_messageQueue.empty()/* && m_subscriptions.size() > 0*/)
 	{
-		Message currentMessage = m_messageQueue.front();
+		Message* currentMessage = m_messageQueue.front();
 
-		std::set<MessageListener*> listeners = m_subscriptions.find(currentMessage.GetMessageType())->second;
-
-		for (auto it = listeners.begin(); it != listeners.end(); ++it)
+		auto  subscription = m_subscriptions.find(currentMessage->GetMessageType());
+		if (subscription != m_subscriptions.end())
 		{
-			(*it)->HandleMessage(currentMessage);
+			std::set<MessageListener*> listeners = m_subscriptions.find(currentMessage->GetMessageType())->second;
+
+			for (auto listener = listeners.begin(); listener != listeners.end(); ++listener)
+			{
+				InputData* inputData = static_cast<InputData*>(currentMessage->GetData());
+
+				(*listener)->HandleMessage(currentMessage);
+			}
 		}
 
 		m_messageQueue.pop();

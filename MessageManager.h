@@ -18,12 +18,12 @@ public:
 
 	bool Register(MessageListener*, MessageType);
 	bool Unregister(MessageListener*, MessageType);
-	bool QueueMessage(Message);
+	bool QueueMessage(Message*);
 	bool Update();
 
 private:
 	static MessageManager* s_Instance;
 
-	std::queue<Message> m_messageQueue;
+	std::queue<Message*> m_messageQueue;
 	std::map<MessageType, std::set<MessageListener*>> m_subscriptions;
 };

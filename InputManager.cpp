@@ -1,20 +1,25 @@
 #include "InputManager.h"
 #include "Helpers.h"
+#include "WindowsInput.h"
+
+InputManager* InputManager::s_Instance = nullptr;
 
 void OnKeyPress(InputData& data)
 {
-	InputManager::getInstance().KeyPressed(data.keyCode);
+	InputManager::GetInstance()->SetKeyPressed(data.keyCode);
 }
 
 void OnKeyRelease(InputData& data)
 {
-	InputManager::getInstance().KeyReleased(data.keyCode);
+	InputManager::GetInstance()->SetKeyReleased(data.keyCode);
 }
 
-InputManager& InputManager::getInstance()
+InputManager* InputManager::GetInstance()
 {
-	static InputManager instance;
-	return instance;
+	if (InputManager::s_Instance == nullptr)
+		InputManager::s_Instance = new InputManager;
+
+	return InputManager::s_Instance;
 }
 
 InputManager::InputManager()
@@ -25,6 +30,11 @@ InputManager::InputManager()
 
 	m_pWindowsInput = new WindowsInput(m_pInput);
 	m_pWindowsInput->Initialize();
+
+	for (int i = 0; i != (int)KeyCode::KeyCodeEnd; ++i)
+	{
+		m_Keyboard[(KeyCode)i] = false;
+	}
 }
 
 InputManager::~InputManager()
@@ -33,153 +43,178 @@ InputManager::~InputManager()
 	SAFE_DELETE(m_pWindowsInput);
 }
 
-void InputManager::KeyPressed(KeyCode code)
+void InputManager::SetKeyPressed(KeyCode code)
 {
-	switch (code)
+	// testing input
+	if (m_Keyboard[code] == false)
 	{
-	case KeyCode::Ichi:
-
-		OutputDebugString(L"1 ");
-		break;
-	case KeyCode::Ni:
-		OutputDebugString(L"2 ");
-		break;
-	case KeyCode::San:
-		OutputDebugString(L"3 ");
-		break;
-	case KeyCode::Shi:
-		OutputDebugString(L"4 ");
-		break;
-	case KeyCode::Q:
-		OutputDebugString(L"Q ");
-		break;
-	case KeyCode::W:
-		OutputDebugString(L"W ");
-		break;
-	case KeyCode::E:
-		OutputDebugString(L"E ");
-		break;
-	case KeyCode::R:
-		OutputDebugString(L"R ");
-		break;
-	case KeyCode::A:
-		OutputDebugString(L"A ");
-		break;
-	case KeyCode::S:
-		OutputDebugString(L"S ");
-		break;
-	case KeyCode::D:
-		OutputDebugString(L"D ");
-		break;
-	case KeyCode::F:
-		OutputDebugString(L"F ");
-		break;
-	case KeyCode::Z:
-		OutputDebugString(L"Z ");
-		break;
-	case KeyCode::X:
-		OutputDebugString(L"X ");
-		break;
-	case KeyCode::C:
-		OutputDebugString(L"C ");
-		break;
-	case KeyCode::Left:
-		OutputDebugString(L"< ");
-		break;
-	case KeyCode::Up:
-		OutputDebugString(L"^ ");
-		break;
-	case KeyCode::Down:
-		OutputDebugString(L"v ");
-		break;
-	case KeyCode::Right:
-		OutputDebugString(L"> ");
-		break;
-	case KeyCode::Space:
-		OutputDebugString(L"Space  ");
-		break;
-	case KeyCode::Enter:
-		OutputDebugString(L"Enter ");
-		break;
-	case KeyCode::Escape:
-		OutputDebugString(L"Esc ");
-		break;
-	default:
-		break;
+		switch (code)
+		{
+		case KeyCode::Ichi:
+			OutputDebugString(L"1 pressed. ");
+			break;
+		case KeyCode::Ni:
+			OutputDebugString(L"2 pressed. ");
+			break;
+		case KeyCode::San:
+			OutputDebugString(L"3 pressed. ");
+			break;
+		case KeyCode::Shi:
+			OutputDebugString(L"4 pressed. ");
+			break;
+		case KeyCode::Q:
+			OutputDebugString(L"Q pressed. ");
+			break;
+		case KeyCode::W:
+			OutputDebugString(L"W pressed. ");
+			break;
+		case KeyCode::E:
+			OutputDebugString(L"E pressed. ");
+			break;
+		case KeyCode::R:
+			OutputDebugString(L"R pressed. ");
+			break;
+		case KeyCode::A:
+			OutputDebugString(L"A pressed. ");
+			break;
+		case KeyCode::S:
+			OutputDebugString(L"S pressed. ");
+			break;
+		case KeyCode::D:
+			OutputDebugString(L"D pressed. ");
+			break;
+		case KeyCode::F:
+			OutputDebugString(L"F pressed. ");
+			break;
+		case KeyCode::Z:
+			OutputDebugString(L"Z pressed. ");
+			break;
+		case KeyCode::X:
+			OutputDebugString(L"X pressed. ");
+			break;
+		case KeyCode::C:
+			OutputDebugString(L"C pressed. ");
+			break;
+		case KeyCode::Left:
+			OutputDebugString(L"< pressed. ");
+			break;
+		case KeyCode::Up:
+			OutputDebugString(L"^ pressed. ");
+			break;
+		case KeyCode::Down:
+			OutputDebugString(L"v pressed. ");
+			break;
+		case KeyCode::Right:
+			OutputDebugString(L"> pressed. ");
+			break;
+		case KeyCode::Space:
+			OutputDebugString(L"Space pressed. ");
+			break;
+		case KeyCode::Enter:
+			OutputDebugString(L"Enter pressed. ");
+			break;
+		case KeyCode::Escape:
+			OutputDebugString(L"Esc pressed. ");
+			break;
+		default:
+			OutputDebugString(L"Unknown key pressed. ");
+			break;
+		}
 	}
+
+	m_Keyboard[code] = true;
 }
 
-void InputManager::KeyReleased(KeyCode code)
+void InputManager::SetKeyReleased(KeyCode code)
 {
-	/*switch (code)
+	// testing input
+	if (m_Keyboard[code] == true)
 	{
-	case KeyCode::Ichi:
-		OutputDebugString(L"-1 ");
-		break;
-	case KeyCode::Ni:
-		OutputDebugString(L"-2 ");
-		break;
-	case KeyCode::San:
-		OutputDebugString(L"-3 ");
-		break;
-	case KeyCode::Shi:
-		OutputDebugString(L"-4 ");
-		break;
-	case KeyCode::Q:
-		OutputDebugString(L"-Q ");
-		break;
-	case KeyCode::W:
-		OutputDebugString(L"-W ");
-		break;
-	case KeyCode::E:
-		OutputDebugString(L"-E ");
-		break;
-	case KeyCode::R:
-		OutputDebugString(L"-R ");
-		break;
-	case KeyCode::A:
-		OutputDebugString(L"-A ");
-		break;
-	case KeyCode::S:
-		OutputDebugString(L"-S ");
-		break;
-	case KeyCode::D:
-		OutputDebugString(L"-D ");
-		break;
-	case KeyCode::F:
-		OutputDebugString(L"-F ");
-		break;
-	case KeyCode::Z:
-		OutputDebugString(L"-Z ");
-		break;
-	case KeyCode::X:
-		OutputDebugString(L"-X ");
-		break;
-	case KeyCode::C:
-		OutputDebugString(L"-C ");
-		break;
-	case KeyCode::Left:
-		OutputDebugString(L"-< ");
-		break;
-	case KeyCode::Up:
-		OutputDebugString(L"-^ ");
-		break;
-	case KeyCode::Down:
-		OutputDebugString(L"-v ");
-		break;
-	case KeyCode::Right:
-		OutputDebugString(L"-> ");
-		break;
-	case KeyCode::Space:
-		OutputDebugString(L"-Space  ");
-		break;
-	case KeyCode::Enter:
-		OutputDebugString(L"-Enter ");
-		break;
-	case KeyCode::Escape:
-		OutputDebugString(L"-Esc ");
-		break;
-	default:
-		break;
-	}*/
+		switch (code)
+		{
+		case KeyCode::Ichi:
+			OutputDebugString(L"1 unpressed. ");
+			break;
+		case KeyCode::Ni:
+			OutputDebugString(L"2 unpressed. ");
+			break;
+		case KeyCode::San:
+			OutputDebugString(L"3 unpressed. ");
+			break;
+		case KeyCode::Shi:
+			OutputDebugString(L"4 unpressed. ");
+			break;
+		case KeyCode::Q:
+			OutputDebugString(L"Q unpressed. ");
+			break;
+		case KeyCode::W:
+			OutputDebugString(L"W unpressed. ");
+			break;
+		case KeyCode::E:
+			OutputDebugString(L"E unpressed. ");
+			break;
+		case KeyCode::R:
+			OutputDebugString(L"R unpressed. ");
+			break;
+		case KeyCode::A:
+			OutputDebugString(L"A unpressed. ");
+			break;
+		case KeyCode::S:
+			OutputDebugString(L"S unpressed. ");
+			break;
+		case KeyCode::D:
+			OutputDebugString(L"D unpressed. ");
+			break;
+		case KeyCode::F:
+			OutputDebugString(L"F unpressed. ");
+			break;
+		case KeyCode::Z:
+			OutputDebugString(L"Z unpressed. ");
+			break;
+		case KeyCode::X:
+			OutputDebugString(L"X unpressed. ");
+			break;
+		case KeyCode::C:
+			OutputDebugString(L"C unpressed. ");
+			break;
+		case KeyCode::Left:
+			OutputDebugString(L"< unpressed. ");
+			break;
+		case KeyCode::Up:
+			OutputDebugString(L"^ unpressed. ");
+			break;
+		case KeyCode::Down:
+			OutputDebugString(L"v unpressed. ");
+			break;
+		case KeyCode::Right:
+			OutputDebugString(L"> unpressed. ");
+			break;
+		case KeyCode::Space:
+			OutputDebugString(L"Space unpressed. ");
+			break;
+		case KeyCode::Enter:
+			OutputDebugString(L"Enter unpressed. ");
+			break;
+		case KeyCode::Escape:
+			OutputDebugString(L"Esc unpressed. ");
+			break;
+		default:
+			OutputDebugString(L"Unknown key unpressed. ");
+			break;
+		}
+	}
+
+	m_Keyboard[code] = false;
+}
+
+bool InputManager::GetKeyPressed(KeyCode code)
+{
+	if (m_Keyboard.find(code) != m_Keyboard.end())
+	{
+		return m_Keyboard[code];
+	}
+
+	OutputDebugString(L"InputManager::GetKeyPressed: Cannot find key.");
+
+	return false;
 }

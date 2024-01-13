@@ -1,6 +1,5 @@
 #pragma once
 
-//#include <functional>
 #include <unordered_map>
 
 enum class InputEvent {
@@ -10,7 +9,7 @@ enum class InputEvent {
 
 enum class KeyCode
 {
-	Ichi, 
+	Ichi = 0, 
 	Ni, 
 	San, 
 	Shi,
@@ -32,35 +31,29 @@ enum class KeyCode
 	Space, 
 	Enter, 
 	Escape,
-	Alt
-};
+	Alt,
 
-enum class KeyModifier
-{
-	None,
-	Alt
+	KeyCodeEnd
 };
 
 struct InputData
 {
-	InputEvent event;
+	InputEvent inputEvent;
 	KeyCode keyCode;
-	KeyModifier modifier;
 };
 
-typedef void (*EventCallback)(InputData&);
-//using EventCallback = std::function<void(InputData&)>;
+typedef void (*InputEventCallback)(InputData&);
 
 class Input
 {
 public:
-	void RegisterCallback(InputEvent event, const EventCallback& callback);
-	void UnregisterCallback(InputEvent event, const EventCallback& callback);
+	void RegisterCallback(InputEvent event, const InputEventCallback& callback);
+	void UnregisterCallback(InputEvent event, const InputEventCallback& callback);
 
-	void HandleKeyPress(KeyCode key, KeyModifier modifier);
-	void HandleKeyRelease(KeyCode key, KeyModifier modifier);
+	void HandleKeyPress(KeyCode);
+	void HandleKeyRelease(KeyCode);
 private:
-	std::unordered_map<InputEvent, std::vector<EventCallback>> m_callbacks;
+	std::unordered_map<InputEvent, std::vector<InputEventCallback>> m_callbacks;
 
 	void InvokeCallbacks(InputEvent event, InputData& eventData);
 };

@@ -1,18 +1,18 @@
 #include "Input.h"
 
-void Input::RegisterCallback(InputEvent event, const EventCallback& callback)
+void Input::RegisterCallback(InputEvent event, const InputEventCallback& callback)
 {
 	m_callbacks[event].emplace_back(callback);
 }
 
-void Input::UnregisterCallback(InputEvent event, const EventCallback& callback)
+void Input::UnregisterCallback(InputEvent event, const InputEventCallback& callback)
 {
 	auto it = m_callbacks.find(event);
 	if (it != m_callbacks.end())
 	{
-		std::vector<EventCallback> callbacks = it->second;
+		std::vector<InputEventCallback> callbacks = it->second;
 
-		for (std::vector<EventCallback>::iterator callbackIter = callbacks.begin(); callbackIter != callbacks.end(); ++callbackIter)
+		for (std::vector<InputEventCallback>::iterator callbackIter = callbacks.begin(); callbackIter != callbacks.end(); ++callbackIter)
 		{
 			callbacks.erase(callbackIter);
 		}
@@ -24,24 +24,24 @@ void Input::InvokeCallbacks(InputEvent event, InputData& eventData)
 	auto it = m_callbacks.find(event);
 	if (it != m_callbacks.end())
 	{
-		std::vector<EventCallback> callbacks = it->second;
+		std::vector<InputEventCallback> callbacks = it->second;
 
-		for (EventCallback callback : callbacks)
+		for (InputEventCallback callback : callbacks)
 		{
 			callback(eventData);
 		}
 	}
 }
 
-void Input::HandleKeyPress(KeyCode key, KeyModifier mod)
+void Input::HandleKeyPress(KeyCode key)
 {
-	InputData data{ InputEvent::KeyPressed, key, mod };
+	InputData data{ InputEvent::KeyPressed, key};
 	InvokeCallbacks(InputEvent::KeyPressed, data);
 }
 
-void Input::HandleKeyRelease(KeyCode key, KeyModifier mod)
+void Input::HandleKeyRelease(KeyCode key)
 {
-	InputData data{ InputEvent::KeyReleased, key, mod };
+	InputData data{ InputEvent::KeyReleased, key};
 	InvokeCallbacks(InputEvent::KeyReleased, data);
 }
 

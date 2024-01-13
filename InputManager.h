@@ -1,21 +1,26 @@
 #include "Input.h"
-#include "WindowsInput.h"
 #include <unordered_map>
+
+class WindowsInput;
 
 class InputManager
 {
 public:
-	static InputManager& getInstance();
+	static InputManager* GetInstance();
 
-	void KeyPressed(KeyCode);
-	void KeyReleased(KeyCode);
+	void SetKeyPressed(KeyCode);
+	void SetKeyReleased(KeyCode);
+
+	bool GetKeyPressed(KeyCode);
 
 private:
+	static InputManager* s_Instance;
+
 	InputManager();
 	~InputManager();
 
 	Input* m_pInput;
 	WindowsInput* m_pWindowsInput;
 
-	std::unordered_map<KeyCode, bool> m_PressedKeys;
+	std::unordered_map<KeyCode, bool> m_Keyboard;
 };
