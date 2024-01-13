@@ -61,4 +61,6 @@ private:
 	RenderCore* m_pRenderer;
 	MessageManager* m_pMessageManager;
 	InputManager* m_pInputManager;
+
+	unsigned long m_ulGameTime = 0;
 };
