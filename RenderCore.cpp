@@ -9,9 +9,7 @@ RenderCore::RenderCore(UINT width, UINT height, std::wstring name) :
     m_scissorRect(0, 0, static_cast<LONG>(width), static_cast<LONG>(height)),
     m_rtvDescriptorSize(0)
 {
-    WCHAR assetsPath[512];
-    InitAssetPath(assetsPath, _countof(assetsPath));
-    m_assetsPath = assetsPath;
+    InitAssetPath();
 
     m_aspectRatio = static_cast<float>(width) / static_cast<float>(height);
 }
@@ -48,6 +46,8 @@ void RenderCore::Shutdown()
     WaitForPreviousFrame();
 
     CloseHandle(m_fenceEvent);
+
+    SAFE_DELETE(m_assetsPath);
 }
 
 void RenderCore::LoadPipeline()
@@ -250,8 +250,8 @@ void RenderCore::LoadAssets()
 #endif
 
         //TODO: Make asset manager
-        std::wstring vs_file = GetAssetFullPath(L"ps_vs_shader.hlsl");
-        std::wstring ps_file = GetAssetFullPath(L"ps_vs_shader.hlsl");
+        std::wstring vs_file = *m_assetsPath + (L"ps_vs_shader.hlsl");
+        std::wstring ps_file = *m_assetsPath + (L"ps_vs_shader.hlsl");
         ThrowIfFailed(D3DCompileFromFile(vs_file.c_str(), nullptr, nullptr, "VSMain", "vs_5_0", compileFlags, 0, &vertexShader, nullptr));
         ThrowIfFailed(D3DCompileFromFile(ps_file.c_str(), nullptr, nullptr, "PSMain", "ps_5_0", compileFlags, 0, &pixelShader, nullptr));
 
@@ -401,30 +401,37 @@ void RenderCore::WaitForPreviousFrame()
 
     m_frameIndex = m_swapChain->GetCurrentBackBufferIndex();
 }
-
-void RenderCore::InitAssetPath(_Out_writes_(pathSize) WCHAR* path, UINT pathSize)
+#include <algorithm>
+void RenderCore::InitAssetPath()
 {
-    if (path == nullptr)
+    //janky string from macro in project file
+#pragma warning (disable : 4129 )
+    std::wstring szDirectoryBase(PROJECT_DIR);
+
+    //relative path to shader folder
+    std::wstring szAssetLocation = L"\\Assets\\Shaders\\";
+
+    //damage control
+    auto iter = szDirectoryBase.begin();
+    while (iter != szDirectoryBase.end())
     {
-        throw std::exception();
+        //fix drive path
+        if (*(iter) == ':')
+        {
+            iter++;
+            szDirectoryBase.insert(iter++, L'\\');
+        }
+        //prune parenthesis
+        else if (*(iter) == '(' || *(iter) == ')')
+        {
+            szDirectoryBase.erase(iter);
+        }
+        else
+        {
+            iter++;
+        }
     }
 
-    DWORD size = GetModuleFileName(nullptr, path, pathSize);
-    if (size == 0 || size == pathSize)
-    {
-        // Method failed or path was truncated.
-        throw std::exception();
-    }
-
-    WCHAR* lastSlash = wcsrchr(path, L'\\');
-    if (lastSlash)
-    {
-        *(lastSlash + 1) = L'\0';
-    }
-}
-
-// Helper function for resolving the full path of assets.
-std::wstring RenderCore::GetAssetFullPath(LPCWSTR assetName)
-{
-    return m_assetsPath + assetName;
+    //frankenstein
+    m_assetsPath = new std::wstring(szDirectoryBase + szAssetLocation);
 }
