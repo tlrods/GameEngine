@@ -1,156 +1,47 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
-    <Filter Include="Source Files\MessageSystem">
-      <UniqueIdentifier>{9c7108c2-beba-477f-8925-d7416edc29d5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\State Machine">
-      <UniqueIdentifier>{4b9ef85c-0439-4f6c-8edd-984a93f4d4c7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\InputSystem">
-      <UniqueIdentifier>{00fea3c6-cf49-4777-9aac-f07f76448b8d}</UniqueIdentifier>
-    <Filter Include="Source Files\DirectX Renderer">
-      <UniqueIdentifier>{4bb6b067-8949-44ec-aa4e-565e3280e04a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Rendering System">
-      <UniqueIdentifier>{6d397a91-b17e-4ed8-bac8-45d26d071fdb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Assets">
-      <UniqueIdentifier>{60f1cd9a-2aff-463e-8ee3-6d1e613a99a5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Assets\Shaders">
-      <UniqueIdentifier>{613c727f-7eb8-4014-8afa-c3510be0cc2e}</UniqueIdentifier>
-    </Filter>
+    <ClCompile Include="Application.cpp" />
+    <ClCompile Include="DebugState.cpp" />
+    <ClCompile Include="EngineState.cpp" />
+    <ClCompile Include="IEngineState.cpp" />
+    <ClCompile Include="Input.cpp" />
+    <ClCompile Include="InputManager.cpp" />
+    <ClCompile Include="MessageListener.cpp" />
+    <ClCompile Include="MenuState.cpp" />
+    <ClCompile Include="Message.cpp" />
+    <ClCompile Include="MessageManager.cpp" />
+    <ClCompile Include="RenderContext.cpp" />
+    <ClCompile Include="Renderer.cpp" />
+    <ClCompile Include="RenderingSurface.cpp" />
+    <ClCompile Include="StateMachine.cpp" />
+    <ClCompile Include="RenderCore.cpp" />
+    <ClCompile Include="WindowsInput.cpp" />
+    <ClCompile Include="ApplicationWindow.cpp" />
+    <ClCompile Include="WinMain.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="WinMain.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Message.cpp">
-      <Filter>Source Files\MessageSystem</Filter>
-    </ClCompile>
-    <ClCompile Include="MessageManager.cpp">
-      <Filter>Source Files\MessageSystem</Filter>
-    </ClCompile>
-    <ClCompile Include="StateMachine.cpp">
-      <Filter>Source Files\State Machine</Filter>
-    </ClCompile>
-    <ClCompile Include="IEngineState.cpp">
-      <Filter>Source Files\State Machine</Filter>
-    </ClCompile>
-    <ClCompile Include="EngineState.cpp">
-      <Filter>Source Files\State Machine</Filter>
-    </ClCompile>
-    <ClCompile Include="MenuState.cpp">
-      <Filter>Source Files\State Machine</Filter>
-    </ClCompile>
-    <ClCompile Include="DebugState.cpp">
-      <Filter>Source Files\State Machine</Filter>
-    </ClCompile>
-    <ClCompile Include="MessageListener.cpp">
-      <Filter>Source Files\MessageSystem</Filter>
-    </ClCompile>
-    <ClCompile Include="Application.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Input.cpp">
-      <Filter>Source Files\InputSystem</Filter>
-    </ClCompile>
-    <ClCompile Include="InputManager.cpp">
-      <Filter>Source Files\InputSystem</Filter>
-    </ClCompile>
-    <ClCompile Include="WindowsInput.cpp">
-      <Filter>Source Files\InputSystem</Filter>
-    <ClCompile Include="RenderCore.cpp">
-      <Filter>Source Files\DirectX Renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="RenderContext.cpp">
-      <Filter>Source Files\DirectX Renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="Renderer.cpp">
-      <Filter>Source Files\Rendering System</Filter>
-    </ClCompile>
-    <ClCompile Include="RenderingSurface.cpp">
-      <Filter>Source Files\Rendering System</Filter>
-    </ClCompile>
-    <ClCompile Include="ApplicationWindow.cpp">
-      <Filter>Source Files\DirectX Renderer</Filter>
-    </ClCompile>
+    <ClInclude Include="Application.h" />
+    <ClInclude Include="d3dx12.h" />
+    <ClInclude Include="DebugState.h" />
+    <ClInclude Include="EngineState.h" />
+    <ClInclude Include="Helpers.h" />
+    <ClInclude Include="IEngineState.h" />
+    <ClInclude Include="Input.h" />
+    <ClInclude Include="InputManager.h" />
+    <ClInclude Include="MenuState.h" />
+    <ClInclude Include="MessageManager.h" />
+    <ClInclude Include="Message.h" />
+    <ClInclude Include="MessageListener.h" />
+    <ClInclude Include="RenderContext.h" />
+    <ClInclude Include="Renderer.h" />
+    <ClInclude Include="RenderingSurface.h" />
+    <ClInclude Include="StateMachine.h" />
+    <ClInclude Include="RenderCore.h" />
+    <ClInclude Include="WindowsInput.h" />
+    <ClInclude Include="ApplicationWindow.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Message.h">
-      <Filter>Source Files\MessageSystem</Filter>
-    </ClInclude>
-    <ClInclude Include="MessageManager.h">
-      <Filter>Source Files\MessageSystem</Filter>
-    </ClInclude>
-    <ClInclude Include="StateMachine.h">
-      <Filter>Source Files\State Machine</Filter>
-    </ClInclude>
-    <ClInclude Include="IEngineState.h">
-      <Filter>Source Files\State Machine</Filter>
-    </ClInclude>
-    <ClInclude Include="EngineState.h">
-      <Filter>Source Files\State Machine</Filter>
-    </ClInclude>
-    <ClInclude Include="MenuState.h">
-      <Filter>Source Files\State Machine</Filter>
-    </ClInclude>
-    <ClInclude Include="DebugState.h">
-      <Filter>Source Files\State Machine</Filter>
-    </ClInclude>
-    <ClInclude Include="MessageListener.h">
-      <Filter>Source Files\MessageSystem</Filter>
-    </ClInclude>
-    <ClInclude Include="Application.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Helpers.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Input.h">
-      <Filter>Source Files\InputSystem</Filter>
-    </ClInclude>
-    <ClInclude Include="InputManager.h">
-      <Filter>Source Files\InputSystem</Filter>
-    </ClInclude>
-    <ClInclude Include="WindowsInput.h">
-      <Filter>Source Files\InputSystem</Filter>
-    </ClInclude>
-    <ClInclude Include="RenderCore.h">
-      <Filter>Source Files\DirectX Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="RenderContext.h">
-      <Filter>Source Files\DirectX Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="Renderer.h">
-      <Filter>Source Files\Rendering System</Filter>
-    </ClInclude>
-    <ClInclude Include="RenderingSurface.h">
-      <Filter>Source Files\Rendering System</Filter>
-    </ClInclude>
-    <ClInclude Include="d3dx12.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ApplicationWindow.h">
-      <Filter>Source Files\DirectX Renderer</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <FxCompile Include="ps_vs_shader.hlsl">
-      <Filter>Assets\Shaders</Filter>
-    </FxCompile>
+    <FxCompile Include="Assets\Shaders\ps_vs_shader.hlsl" />
   </ItemGroup>
 </Project>

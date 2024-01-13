@@ -51,7 +51,7 @@ private:
     Microsoft::WRL::ComPtr<ID3D12Fence> m_fence;
     UINT64 m_fenceValue;
 
-    std::wstring m_assetsPath;
+    std::wstring* m_assetsPath;
 
     // Viewport dimensions.
     UINT m_width;
@@ -65,6 +65,6 @@ private:
     void PopulateCommandList();
     void WaitForPreviousFrame();
     std::wstring GetAssetFullPath(LPCWSTR assetName);
-    void InitAssetPath(_Out_writes_(pathSize) WCHAR* path, UINT pathSize);
+    void InitAssetPath();
 
 };
