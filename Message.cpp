@@ -18,3 +18,8 @@ MessageType Message::GetMessageType()
 {
 	return m_eType;
 }
+
+void* Message::GetData()
+{
+	return m_pData;
+}

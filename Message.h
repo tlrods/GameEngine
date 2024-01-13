@@ -5,7 +5,6 @@ enum class MessageType
 	None         = 0,
 	GameStart    = 1,
 	GameEnd      = 2,
-	GameRunning  = 3
 };
 
 class Message
@@ -16,6 +15,7 @@ public:
 	~Message();
 
 	MessageType GetMessageType();
+	void* GetData();
 private:
 	MessageType m_eType;
 	void* m_pData;

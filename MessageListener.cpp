@@ -1,5 +1,7 @@
 #include "MessageListener.h"
 #include "MessageManager.h"
+#include "Input.h"
+#include "Helpers.h"
 
 MessageListener::MessageListener() 
 {
@@ -33,14 +35,22 @@ unsigned int MessageListener::GetId()
 	return m_uId;
 }
 
-void MessageListener::HandleMessage(Message msg)
+void MessageListener::HandleMessage(Message* msg)
 {
 	bool bIsGameRunning = false;
 
-	switch ((MessageType)msg.GetMessageType())
+	switch ((MessageType)msg->GetMessageType())
 	{
-	case MessageType::GameRunning:
+	case MessageType::GameStart:
+	{
 		bIsGameRunning = true;
+		break;
+	}
+	case MessageType::GameEnd:
+	{
+		bIsGameRunning = false;
+		break;
+	}
 	default:
 		break;
 	}

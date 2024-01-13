@@ -4,6 +4,7 @@
 class StateManager;
 class RenderCore;
 class MessageManager;
+class InputManager;
 
 class Application
 {
@@ -59,4 +60,5 @@ private:
 	StateManager* m_pStateManager;
 	RenderCore* m_pRenderer;
 	MessageManager* m_pMessageManager;
+	InputManager* m_pInputManager;
 };

@@ -21,6 +21,8 @@ Application::~Application()
 	
 }
 
+
+
 void Application::Intitialize()
 {
     m_pStateManager = new StateManager;
@@ -28,16 +30,17 @@ void Application::Intitialize()
 
     m_pRenderer = new RenderCore(m_width, m_height, m_title);
     m_pRenderer->Initialize();
+    
+    m_pMessageManager = MessageManager::GetInstance();
 
-    m_pMessageManager = new MessageManager;
-
-    InputManager::getInstance();
+    m_pInputManager = InputManager::GetInstance();
 }
 
 void Application::Update()
 {
     m_pStateManager->Update();
     m_pRenderer->Update();
+    m_pMessageManager->Update();
 }
 
 void Application::Render()
