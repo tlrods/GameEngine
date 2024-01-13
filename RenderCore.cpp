@@ -407,34 +407,27 @@ void RenderCore::InitAssetPath()
     WCHAR assetsPath[512];
     DWORD size = GetModuleFileName(nullptr, assetsPath, _countof(assetsPath));
 
-    //janky string from macro in project file
-#pragma warning (disable : 4129 )
     std::wstring szDirectoryBase(assetsPath);
 
     //relative path to shader folder
     std::wstring szAssetLocation = L"\\Assets\\Shaders\\";
+    std::wstring szConfig = CONFIG_VERSION;
 
-    //damage control
-    auto iter = szDirectoryBase.begin();
-    while (iter != szDirectoryBase.end())
+    std::wstring::iterator iter = szConfig.begin();
+    while (iter != szConfig.end())
     {
-        //fix drive path
-        if (*(iter) == 'x')
+        //prune parenthesis
+        if (*(iter) == '(' || *(iter) == ')')
         {
-            if (*(iter+1) == '6')
-            {
-                if (*(iter+2) == '4')
-                {
-                    szDirectoryBase.erase(iter, szDirectoryBase.end());
-                    break;
-                }
-            }
+            szConfig.erase(iter);
         }
         else
         {
-            iter++;
+			iter++;
         }
     }
+
+    szDirectoryBase.erase(szDirectoryBase.find(szConfig));
 
     //frankenstein
     m_assetsPath = new std::wstring(szDirectoryBase + szAssetLocation);
