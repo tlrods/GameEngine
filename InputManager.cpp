@@ -29,7 +29,8 @@ InputManager::InputManager()
 
 InputManager::~InputManager()
 {
-
+	SAFE_DELETE(m_pInput);
+	SAFE_DELETE(m_pWindowsInput);
 }
 
 void InputManager::KeyPressed(KeyCode code)

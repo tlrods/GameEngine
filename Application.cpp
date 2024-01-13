@@ -48,8 +48,10 @@ void Application::Render()
 
 void Application::Shutdown()
 {
-    //m_pStateManager->Shutdown();
     m_pRenderer->Shutdown();
+    SAFE_DELETE(m_pRenderer);
+    SAFE_DELETE(m_pStateManager);
+    SAFE_DELETE(m_pMessageManager);
 }
 
 // Helper function for resolving the full path of assets.
