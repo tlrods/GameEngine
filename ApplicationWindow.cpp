@@ -1,6 +1,7 @@
 #include "ApplicationWindow.h"
 #include "Application.h"
 #include "Helpers.h"
+#include "WindowsInput.h"
 
 using namespace Microsoft::WRL;
 
@@ -26,6 +27,9 @@ int ApplicationWindow::Run(HINSTANCE hInstance, int nCmdShow)
 #else // borderless if we ever want arcade
     DWORD dwWindowStyleFlags = WS_VISIBLE | WS_POPUP /*| WS_CAPTION */ | WS_SYSMENU | WS_MINIMIZEBOX;
 #endif
+
+    WindowsInput* windowsInput = new WindowsInput();
+    windowsInput->Initialize();
 
     WNDCLASSEX wcex;
     wcex.cbSize = sizeof(WNDCLASSEX);
@@ -113,6 +117,8 @@ int ApplicationWindow::Run(HINSTANCE hInstance, int nCmdShow)
         }
     }
 
+    SAFE_DELETE(windowsInput);
+
     return (int)msg.wParam;
 }
 
@@ -131,14 +137,14 @@ LRESULT ApplicationWindow::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARA
     case WM_KEYDOWN:
         if (m_pGameInstance)
         {
-            m_pGameInstance->OnKeyDown(static_cast<UINT8>(wParam));
+            //m_pGameInstance->m_pInputManagerT8>(wParam));
         }
         return 0;
 
     case WM_KEYUP:
         if (m_pGameInstance)
         {
-            m_pGameInstance->OnKeyUp(static_cast<UINT8>(wParam));
+            //m_pGameInstance->OnKeyUp(static_cast<UINT8>(wParam));
         }
         return 0;
 

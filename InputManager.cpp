@@ -4,15 +4,15 @@
 
 InputManager* InputManager::s_Instance = nullptr;
 
-void OnKeyPress(InputData& data)
-{
-	InputManager::GetInstance()->SetKeyPressed(data.keyCode);
-}
-
-void OnKeyRelease(InputData& data)
-{
-	InputManager::GetInstance()->SetKeyReleased(data.keyCode);
-}
+//void OnKeyPress(InputData& data)
+//{
+//	InputManager::GetInstance()->SetKeyPressed(data.keyCode);
+//}
+//
+//void OnKeyRelease(InputData& data)
+//{
+//	InputManager::GetInstance()->SetKeyReleased(data.keyCode);
+//}
 
 InputManager* InputManager::GetInstance()
 {
@@ -24,12 +24,15 @@ InputManager* InputManager::GetInstance()
 
 InputManager::InputManager()
 {
-	m_pInput = new Input;
-	m_pInput->RegisterCallback(InputEvent::KeyPressed, OnKeyPress);
-	m_pInput->RegisterCallback(InputEvent::KeyReleased, OnKeyRelease);
+	//m_pInput = new Input;
+	//m_pInput->RegisterCallback(InputEvent::KeyPressed, OnKeyPress);
+	//m_pInput->RegisterCallback(InputEvent::KeyReleased, OnKeyRelease);
 
-	m_pWindowsInput = new WindowsInput(m_pInput);
-	m_pWindowsInput->Initialize();
+	//m_pWindowsInput = new WindowsInput();
+	//m_pWindowsInput->Initialize();
+
+	//m_pWindowsInput->RegisterCallback(InputEvent::KeyPressed, OnKeyPress);
+	//m_pWindowsInput->RegisterCallback(InputEvent::KeyReleased, OnKeyRelease);
 
 	for (int i = 0; i != (int)KeyCode::KeyCodeEnd; ++i)
 	{
@@ -39,8 +42,8 @@ InputManager::InputManager()
 
 InputManager::~InputManager()
 {
-	SAFE_DELETE(m_pInput);
-	SAFE_DELETE(m_pWindowsInput);
+	//SAFE_DELETE(m_pInput);
+	//SAFE_DELETE(m_pWindowsInput);
 }
 
 void InputManager::SetKeyPressed(KeyCode code)

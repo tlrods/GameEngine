@@ -2,9 +2,6 @@
 #include "MessageListener.h"
 #include <windows.h>
 
-//test
-#include "Input.h"
-
 MessageManager* MessageManager::s_Instance = nullptr;
 
 MessageManager::MessageManager() 
@@ -68,8 +65,6 @@ bool MessageManager::Update()
 
 			for (auto listener = listeners.begin(); listener != listeners.end(); ++listener)
 			{
-				InputData* inputData = static_cast<InputData*>(currentMessage->GetData());
-
 				(*listener)->HandleMessage(currentMessage);
 			}
 		}

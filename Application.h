@@ -29,7 +29,7 @@ public:
 	const WCHAR* GetTitle() const { return m_title.c_str(); }
 
 	void ParseCommandLineArgs(_In_reads_(argc) WCHAR* argv[], int argc);
-
+InputManager* m_pInputManager;
 protected:
 	std::wstring GetAssetFullPath(LPCWSTR assetName);
 
@@ -60,7 +60,7 @@ private:
 	StateManager* m_pStateManager;
 	RenderCore* m_pRenderer;
 	MessageManager* m_pMessageManager;
-	InputManager* m_pInputManager;
+	
 
 	unsigned long m_ulGameTime = 0;
 };

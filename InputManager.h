@@ -1,7 +1,33 @@
-#include "Input.h"
 #include <unordered_map>
 
-class WindowsInput;
+enum class KeyCode
+{
+	Ichi = 0,
+	Ni,
+	San,
+	Shi,
+	Q,
+	W,
+	E,
+	R,
+	A,
+	S,
+	D,
+	F,
+	Z,
+	X,
+	C,
+	Left,
+	Up,
+	Down,
+	Right,
+	Space,
+	Enter,
+	Escape,
+	Alt,
+
+	KeyCodeEnd
+};
 
 class InputManager
 {
@@ -19,8 +45,8 @@ private:
 	InputManager();
 	~InputManager();
 
-	Input* m_pInput;
-	WindowsInput* m_pWindowsInput;
+	//Input* m_pInput;
+	//WindowsInput* m_pWindowsInput;
 
 	std::unordered_map<KeyCode, bool> m_Keyboard;
 };

@@ -21,6 +21,7 @@ class ApplicationWindow
 public:
     static int Run(HINSTANCE hInstance, int nCmdShow);
     static HWND GetHwnd() { return m_hWnd; }
+    static LRESULT CALLBACK KeyboardProc(int nCode, WPARAM wParam, LPARAM lParam);
 
 protected:
     static LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
