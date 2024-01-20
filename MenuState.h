@@ -1,6 +1,8 @@
 #pragma once
 #include "EngineState.h"
 
+class Player;
+
 class MenuState : public EngineState
 {
 
@@ -15,6 +17,9 @@ public:
 	virtual bool Shutdown() override;
 
 	virtual StateType GetType() override;
+	virtual Player* GetRenderData() {
+		return nullptr;
+	};
 
 private:
 

@@ -1,6 +1,8 @@
 #pragma once
 #include "IEngineState.h"
 
+class Player;
+
 class EngineState : public IEngineState
 {
 
@@ -16,6 +18,7 @@ public:
 	virtual bool Shutdown() override;
 
 	virtual IEngineState::StateType GetType() override;
+	virtual Player* GetRenderData() = 0;
 
 private:
 

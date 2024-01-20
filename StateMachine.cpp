@@ -4,7 +4,7 @@
 #include "Helpers.h"
 #include "MenuState.h"
 #include "DebugState.h"
-
+#include "InputManager.h"
 #include "debugapi.h"
 
 StateManager::StateManager(): m_pActiveState(nullptr), m_pMenuState(nullptr), m_pDebugState(nullptr)
@@ -20,11 +20,10 @@ StateManager::~StateManager()
 bool StateManager::Initialize()
 {
 	m_pMenuState = new MenuState(IEngineState::StateType::Menu);
-	m_pDebugState = new DebugState(IEngineState::StateType::Debug);
 
 	m_pActiveState = m_pMenuState;
 
-	if (m_pMenuState && m_pDebugState)
+	if (m_pMenuState)
 	{
 		return true;
 	}
@@ -36,11 +35,7 @@ bool StateManager::Initialize()
 
 bool StateManager::Update(unsigned long dt)
 {
-	return true;
-}
-
-bool StateManager::Render()
-{
+	//idk wtf-ing point this serves, probably just want some kind of polymorphism
 	switch (m_pActiveState->GetType())
 	{
 	case IEngineState::StateType::Menu:
@@ -53,7 +48,7 @@ bool StateManager::Render()
 		}
 #endif
 	}
-		break;
+	break;
 	case IEngineState::StateType::Debug:
 #if DEBUG_STATE
 	{
@@ -64,11 +59,32 @@ bool StateManager::Render()
 		}
 	}
 #endif
-			break;
+	break;
 	default:
 		break;
 	}
-	
+
+	if (InputManager::GetInstance()->GetKeyPressed(KeyCode::Enter))
+	{
+		if (m_pActiveState->GetType() == IEngineState::StateType::Menu)
+		{
+			if (m_pDebugState == nullptr)
+			{
+				m_pDebugState = new DebugState(IEngineState::StateType::Debug);
+				m_pDebugState->Initialize();
+			}
+			m_pActiveState = m_pDebugState;
+		}
+	}
+
+	m_pActiveState->Update();
+
+	return true;
+}
+
+bool StateManager::Render()
+{
+	m_pActiveState->Render();
 
 	return true;
 }
@@ -84,6 +100,11 @@ bool StateManager::TransitionState(IEngineState::StateType& eType)
 #endif
 		break;
 	case IEngineState::StateType::Debug:
+		if (m_pDebugState == nullptr)
+		{
+			m_pDebugState = new DebugState(IEngineState::StateType::Debug);
+			m_pDebugState->Initialize();
+		}
 		m_pActiveState = m_pDebugState;
 #if DEBUG_STATE
 		DEBUG_TESTEROO = false;

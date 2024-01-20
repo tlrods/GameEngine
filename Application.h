@@ -62,5 +62,7 @@ private:
 	MessageManager* m_pMessageManager;
 	InputManager* m_pInputManager;
 
-	unsigned long m_ulGameTime = 0;
+	float s_FrameTime = 0.0f;
+	int64_t s_FrameStartTick = 0;
+	static double sm_CpuTickDelta;
 };

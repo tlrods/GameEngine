@@ -19,6 +19,9 @@
     <ClCompile Include="WindowsInput.cpp" />
     <ClCompile Include="ApplicationWindow.cpp" />
     <ClCompile Include="WinMain.cpp" />
+    <ClCompile Include="Object.cpp" />
+    <ClCompile Include="Components.cpp" />
+    <ClCompile Include="Player.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h" />
@@ -40,6 +43,9 @@
     <ClInclude Include="RenderCore.h" />
     <ClInclude Include="WindowsInput.h" />
     <ClInclude Include="ApplicationWindow.h" />
+    <ClInclude Include="Object.h" />
+    <ClInclude Include="Components.h" />
+    <ClInclude Include="Player.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Assets\Shaders\ps_vs_shader.hlsl" />
