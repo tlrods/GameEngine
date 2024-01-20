@@ -1,5 +1,7 @@
 #pragma once
 
+class Player;
+
 class IEngineState
 {
 
@@ -16,6 +18,7 @@ public:
 	virtual bool Shutdown() = 0;
 
 	virtual StateType GetType() = 0;
+	virtual Player* GetRenderData() = 0;
 
 private:
 

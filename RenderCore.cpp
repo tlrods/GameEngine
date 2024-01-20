@@ -19,28 +19,18 @@ void RenderCore::Initialize()
     LoadPipeline();
     LoadAssets();
 }
-
-//please remove this from the renderer
-#include "InputManager.h"
-void RenderCore::Update()
+#include "Player.h"
+#include "Components.h"
+void RenderCore::Update(Player* data)
 {
-	const float translationSpeed = 0.005f;
-
-	if (InputManager::GetInstance()->GetKeyPressed(KeyCode::W))
+	if (data)
 	{
-		m_constantBufferData.offset.y += translationSpeed;
-	}
-    if (InputManager::GetInstance()->GetKeyPressed(KeyCode::A))
-    {
-        m_constantBufferData.offset.x -= translationSpeed;
-    }
-    if (InputManager::GetInstance()->GetKeyPressed(KeyCode::S))
-    {
-        m_constantBufferData.offset.y -= translationSpeed;
-    }
-    if (InputManager::GetInstance()->GetKeyPressed(KeyCode::D))
-    {
-        m_constantBufferData.offset.x += translationSpeed;
+		m_constantBufferData.offset.y = data->GetPosition()->m_y;
+        m_constantBufferData.offset.x = data->GetPosition()->m_x;
+        m_constantBufferData.col.x = data->GetPerceptible()->m_pColor->m_r;
+        m_constantBufferData.col.y = data->GetPerceptible()->m_pColor->m_g;
+        m_constantBufferData.col.z = data->GetPerceptible()->m_pColor->m_b;
+        m_constantBufferData.col.w = data->GetPerceptible()->m_pColor->m_a;
     }
 
 	memcpy(m_pCbvDataBegin, &m_constantBufferData, sizeof(m_constantBufferData));

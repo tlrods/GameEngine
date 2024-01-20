@@ -15,6 +15,7 @@ public:
 	bool Update(unsigned long dt);
 	bool Render();
 	bool TransitionState(IEngineState::StateType& eType);
+	EngineState* GetState() { return m_pActiveState; };
 
 private:
 

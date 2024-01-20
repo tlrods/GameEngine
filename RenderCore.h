@@ -2,13 +2,15 @@
 #include "Helpers.h"
 #include <string>
 
+class Player;
+
 class RenderCore
 {
 public:
     RenderCore(UINT width, UINT height, std::wstring name);
 
     void Initialize();
-    void Update();
+    void Update(Player* data);
     void Render();
     void Shutdown();
 
@@ -30,7 +32,8 @@ private:
     struct SceneConstantBuffer
     {
         DirectX::XMFLOAT4 offset;
-        float padding[60]; // Padding so the constant buffer is 256-byte aligned.
+        DirectX::XMFLOAT4 col;
+        float padding[120]; // Padding so the constant buffer is 256-byte aligned.
     };
     static_assert((sizeof(SceneConstantBuffer) % 256) == 0, "Constant Buffer size must be 256-byte aligned");
 

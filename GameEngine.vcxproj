@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
+    <ClCompile Include="Components.cpp" />
     <ClCompile Include="DebugState.cpp" />
     <ClCompile Include="EngineState.cpp" />
     <ClCompile Include="IEngineState.cpp" />
@@ -29,6 +30,8 @@
     <ClCompile Include="MenuState.cpp" />
     <ClCompile Include="Message.cpp" />
     <ClCompile Include="MessageManager.cpp" />
+    <ClCompile Include="Object.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="RenderContext.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="RenderingSurface.cpp" />
@@ -40,9 +43,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h" />
+    <ClInclude Include="Components.h" />
     <ClInclude Include="d3dx12.h" />
     <ClInclude Include="DebugState.h" />
     <ClInclude Include="EngineState.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="Helpers.h" />
     <ClInclude Include="IEngineState.h" />
     <ClInclude Include="Input.h" />
@@ -51,6 +56,7 @@
     <ClInclude Include="MessageManager.h" />
     <ClInclude Include="Message.h" />
     <ClInclude Include="MessageListener.h" />
+    <ClInclude Include="Object.h" />
     <ClInclude Include="RenderContext.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="RenderingSurface.h" />

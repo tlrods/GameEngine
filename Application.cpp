@@ -4,8 +4,10 @@
 #include "RenderCore.h"
 #include "MessageManager.h"
 #include "InputManager.h"
+#include "EngineState.h"
 
 using namespace Microsoft::WRL; //TODO FIX ME
+double Application::sm_CpuTickDelta = 0;
 
 Application::Application(UINT width, UINT height, std::wstring name) :
 	m_width(width),
@@ -34,21 +36,33 @@ void Application::Intitialize()
     m_pMessageManager = MessageManager::GetInstance();
 
     m_pInputManager = InputManager::GetInstance();
-
-    m_ulGameTime = GetTickCount();
 }
 
 void Application::Update()
 {
-    unsigned long now = GetTickCount();
-    float elapsedTime = (now - m_ulGameTime) / 1000.0f;
-    m_ulGameTime = now;
-    if (elapsedTime > 0.125f) elapsedTime = 0.125f;
+	// With VSync enabled, the time step between frames becomes a multiple of 16.666 ms.  We need
+	// to add logic to vary between 1 and 2 (or 3 fields).  This delta time also determines how
+	// long the previous frame should be displayed (i.e. the present interval.)
+	//s_FrameTime = (s_LimitTo30Hz ? 2.0f : 1.0f) / 60.0f;
+	//if (s_DropRandomFrames)
+	//{
+	//    if (std::rand() % 50 == 0)
+	//        s_FrameTime += (1.0f / 60.0f);
+	//}
 
-    
+	// When running free, keep the most recent total frame time as the time step for
+	// the next frame simulation.  This is not super-accurate, but assuming a frame
+	// time varies smoothly, it should be close enough.
+    LARGE_INTEGER currentTick;
+    QueryPerformanceCounter(&currentTick);
+    int64_t CurrentTick = static_cast<int64_t>(currentTick.QuadPart);
 
-    m_pStateManager->Update(elapsedTime);
-    m_pRenderer->Update();
+	s_FrameTime = (float)(CurrentTick - s_FrameStartTick) * sm_CpuTickDelta;
+    s_FrameStartTick = CurrentTick;
+
+    m_pStateManager->Update(s_FrameTime);
+    //This is fucking stupid 
+    m_pRenderer->Update(m_pStateManager->GetState()->GetRenderData());
     m_pMessageManager->Update();
 }
 
